@@ -1,19 +1,18 @@
 
 import allure
 from playwright.sync_api import Page, Respone
-
 from components.navigation.navbar import Navbar
 
 
 class BasePage:
     def __init__(self, page: Page) -> None:
-        self.page = page
+        self.page = page  # Объект Page, с которым будет взаимодействовать тест
         self.navbar = Navbar(page)
 
-    def visit(self, url: str) -> Response | None:
+    def visit(self, url: str) -> Response | None:  # Метод перехода на заданный url
         with allure.step(f'Opening the url "{url}"'):
             return self.page.goto(url, wait_until='networkidle')
 
-    def reload(self) -> Response | None:
+    def reload(self) -> Response | None:   # Метод перезагрузки текущей страницы
         with allure.step(f'Reloading page with url "{self.page.url}"'):
             return self.page.reload(wait_until='domcontentloaded')
