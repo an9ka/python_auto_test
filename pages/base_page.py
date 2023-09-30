@@ -1,6 +1,6 @@
 
 import allure
-from playwright.sync_api import Page, Respone
+from playwright.sync_api import Page, Response
 from components.navigation.navbar import Navbar
 
 
